@@ -1,0 +1,49 @@
+# ============================================================
+# Arène de la Cicatrice du Vide — Fiche donjon [TEMPLATE - À COMPLÉTER]
+#
+# Dungeon anglais : Scar of the Void
+# Arène void/ombre avec mécaniques de soak et d'espace
+# ============================================================
+
+name: "Arène de la Cicatrice du Vide"
+englishName: "Scar of the Void"
+image: "/assets/arene-cicatrice.jpg"
+season: Hors saison
+order: 7
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y" # À compléter
+route: "TODO: Route autour de l'arène + infos sur pulls"
+bonus: "TODO: Infos sur skip/raccourci possibles"
+
+importantCalls:
+  # FORMAT: "EMOJI Action : [Nom Sort](https://www.wowhead.com/fr/spell=SPELL_ID/slug-name)"
+  - "🔇 Kick : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "💊 Dispel : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "🚀 Soak : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — toujours assigner"
+
+bosses:
+  - name: "TODO: Boss 1 (Imperator Averzian?)"
+    points:
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 🛡️ Description"
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 💊🚀 Description"
+
+  - name: "TODO: Boss 2 (nom)"
+    points:
+      - "TODO: Ajouter 3-5 abilities"
+
+  - name: "TODO: Boss final (nom)"
+    points:
+      - "TODO: Ajouter les phases et mécaniques"
+
+trash:
+  - name: "🔇 Kicks/Interrupts"
+    points:
+      - "TODO: Canaux void principaux"
+
+  - name: "💊 Dispels/Purges"
+    points:
+      - "TODO: DoTs et boucliers à gérer"
+
+  - name: "🚀 Soaks/Positioning"
+    points:
+      - "TODO: Mécaniques de placement d'arène"

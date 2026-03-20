@@ -1,0 +1,71 @@
+# ============================================================
+# Flèche de Coursevent — Fiche donjon
+# ============================================================
+
+name: "Flèche de Coursevent"
+englishName: "Windrunner Spire"
+image: "/assets/fleche-coursevent.jpg"
+season: s1
+order: 2
+
+tomtom: "/way #2395 64.4 61.8 Flèche de Coursevent"
+route: "Todo"
+bonus: "Todo"
+
+importantCalls:
+  - "🔇 Kick : [Éclair spirituel](https://www.wowhead.com/fr/spell=1216135)"
+  - "💊 Dispel TODO"
+  - "✨ Heal TODO"
+
+bosses:
+  - name: "Aube-de-braise"
+    points:
+      - "[Courant ascendant flamboyant](https://www.wowhead.com/fr/spell=466556/courant-ascendant-flamboyant) (2 joueurs ciblés) : 🛡️💊🗡️ Poser en bord d'arène, défensif si besoin"
+      - "[Bourrasque ardente](https://www.wowhead.com/fr/spell=465904/bourrasque-ardente) : 🛡️💊🗡️ Rester proche du boss pour réduire les mouvements"
+      - "[Souffle de feu](https://www.wowhead.com/fr/spell=1217762/souffle-de-feu) : 🛡️💊🗡 4 frontaux successifs → tourner autour du boss"
+      - "[Bec incendiaire](https://www.wowhead.com/fr/spell=466064/bec-incendiaire) : 🛡️💊  Défensif actif sur le hit + DoT"
+
+  - name: "Duo abandonné"
+    points:
+      - "[Lien brisé](https://www.wowhead.com/fr/spell=1219551/lien-brise) : 🛡️🗡️ Descendre Kalis et Latch de façon équilibrée sinon enrage"
+      - "[Hurlement débilitant](https://www.wowhead.com/fr/spell=472736/hurlement-debilitant) : 🛡️💊🗡️ Stoppable par le [Lancer écœurant](https://www.wowhead.com/fr/spell=472795/lancer-ecoeurant)"
+      - "[Malédiction de ténèbres](https://www.wowhead.com/fr/spell=474105/malediction-de-tenebres) : 🛡️💊🗡️ Dispel magie immédiat ou kiter les Entités Sombres"
+      - "[Crachat éclaboussant](https://www.wowhead.com/fr/spell=472745/crachat-eclaboussant) : 🛡️💊🗡️ Espacer les flaques au sol, pour éviter d'être bloqué"
+      - "[Taillade d’os](https://www.wowhead.com/fr/spell=472888/taillade-dos) : 🛡️💊 Défensif actif et gros soin"
+
+  - name: "Commandant Kroluk"
+    points:
+      - "[Bond téméraire](https://www.wowhead.com/fr/spell=472054/bond-temeraire) : 💊🗡️ 1 joueur éloigné pour bait (défensif actif), groupe en stack au melee"
+      - "[Cri d'intimidation](https://www.wowhead.com/fr/spell=1253026/cri-d-intimidation) : 🛡️💊🗡️ Rester près d'un allié avant la fin du cast pour éviter la peur 6s"
+      - "[Saccager](https://www.wowhead.com/fr/spell=467620/saccager) : 🛡️💊 Tank doit avoir un défensif actif"
+      - "[Hurlement de ralliement](https://www.wowhead.com/fr/spell=472043/hurlement-de-ralliement) : 🛡️🗡️ 66% et 33% PV → spawns adds, tank groupe, kick Mystic en priorité, DK grip l'Axethrower"
+
+  - name: "Le cœur fébrile"
+    points:
+      - "[Saut venteux](https://www.wowhead.com/fr/spell=1216042/saut-venteux) (DoT sans durée) : 🛡️💊🗡️ Nettoyer stacks en sautant sur les [Flèches turbulentes](https://www.wowhead.com/fr/spell=1253977/fleche-turbulente)"
+      - "[Rafale de visée](https://www.wowhead.com/fr/spell=468429/rafale-de-visee) : 🛡️💊🗡️ Boss charge au bord de l'arène → saut/blink sur flèche juste avant l'onde de choc"
+      - "[Tir rafale](https://www.wowhead.com/fr/spell=1253986/tir-rafale) : 💊🗡️ Spread même loose pour effacer les flaques tout en restant en range"
+      - "[Entaille tempétueuse](https://www.wowhead.com/fr/spell=472662/entaille-tempetueuse) : 🛡️💊 Tank doit avoir défensif + anticiper le knockback (viser une flèche pour l'annuler)"
+
+trash:
+  - name: "🔇 Kicks prioritaires"
+    points:
+      - "Spirit Bolt (Restless Steward) → rotation kick dédiée"
+      - "Poison Blades (Ardent Cutthroat) → kick absolu"
+      - "Chain Lightning (Phantasmal Mystic) → kick absolu"
+      - "Fungal Bolt (Bloated Lasher) → kick ou CC"
+      - "Fire Spit (Territorial Dragonhawk) → CC pour stopper le canal"
+
+  - name: "💊 Dispels & Purges"
+    points:
+      - "Dispel Magie : Soul Torment (Restless Steward) → vite, priorité heal dessus sinon"
+      - "Dispel Poison : Poison Spray (Creeping Spindleweb)"
+      - "Purge : Bolstering Flames (Territorial Dragonhawk)"
+      - "Soothe : Ephemeral Bloodlust (Phantasmal Mystic à 50% PV)"
+
+  - name: "⚠️ Mécaniques spéciales"
+    points:
+      - "Spellguard Magus : à 50% PV → zone DR 99% → tank bouge le mob immédiatement"
+      - "Devoted Woebringer : Pulsing Shriek (shield + cast) → burst shield et kick"
+      - "Phantasmal Mystic : immune CC → tank garde les grunts groupés"
+      - "Spindleweb : flaques acides à la mort → anticiper le positionnement"

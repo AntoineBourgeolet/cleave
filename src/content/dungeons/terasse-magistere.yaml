@@ -1,0 +1,54 @@
+# ============================================================
+# Terrasse du Magistère — Fiche donjon
+# ============================================================
+
+name: "Terrasse du Magistère"
+englishName: "Magister's Terrace"
+image: "/assets/magister_terrace.jpg"
+season: s1
+order: 3
+
+tomtom: "Coordonnées à relever en jeu (zone Midnight)"
+route: "Todo"
+bonus: "Arcane Tome (bibliothèque) : buff +5% hâte 30min. Cristaux d'énergie (cour) : buff DPS/soins temporaire."
+
+importantCalls:
+  - "🔇 Kick : Métamorphose (Arcane Magister)"
+  - "🔇 Kick : Explosion pyrotechnique (Blazing Pyromancer)"
+  - "🔇 Kick : Vague de terreur (Void Infuser)"
+  - "💊 Dispel Magie : Flammes sacrées (Lightward Healer)"
+  - "✨ Purge : Mot de pouvoir : Bouclier (Lightward Healer)"
+  - "✨ Purge : Protection accélérante (Seranel Sunlash boss)"
+  - "⚠️ Wyrms dorés : stagger les kills — explosion à la mort"
+  - "⚠️ Entraves éthérées : DISPELL ou CD de mouvement (trash & boss)"
+
+bosses:
+  - name: "Arcanotron Custos"
+    points:
+      - "[Expulsion arcanique](https://www.wowhead.com/fr/spell=1214081/expulsion-arcanique) : 🛡️💊🗡️ AoE + knockback + pose une flaque au pied du boss"
+      - "[Heurtoir repoussant](https://www.wowhead.com/fr/spell=474496/heurtoir-repoussant) : 🛡️ Tank hit + knockback → jouer mur ou escalier pour annuler le push"
+      - "[Orbe d’énergie](https://www.wowhead.com/fr/spell=474308/orbe-denergie) : 💊🗡️ Interception → amener le boss dans une alcôve juste avant pour funnel les orbes vers le groupe"
+      - "[Énergie instable](https://www.wowhead.com/fr/spell=1243905/energie-instable) : 🛡️💊🗡️ Les soaks laissent un DoT cumulable → échelonner les prises ou utiliser un défensif si plusieurs d'affilée"
+
+  - name: "Seranel Sunlash"
+    points:
+      - "[Zone de suppression](https://www.wowhead.com/fr/spell=1224903/zone-de-suppression) : 🛡️💊🗡️ La poser au centre → spread autour, sans rester dedans car elle pacifie"
+      - "[Marque runique](https://www.wowhead.com/fr/spell=1225792/marque-runique) : 🛡️💊🗡️ 2 joueurs ciblés → entrer dans la zone en décalé pour dissiper sans overlap"
+      - "[Réaction de vacuité](https://www.wowhead.com/fr/spell=1246446/reaction-de-vacuite) : 🛡️💊🗡️ Déclenchée quand on cleanse la marque → le non-tank passe d'abord, le tank peut tenir plus longtemps"
+      - "[Vague de silence](https://www.wowhead.com/fr/spell=1225193/vague-de-silence) : 🛡️💊🗡️ Entrer dans la zone juste avant la fin du cast → évite la pacification 8s"
+      - "[Protection accélérante](https://www.wowhead.com/fr/spell=1248689/protection-accelerante) : 🛡️ Purge si possible, sinon gros défensif tank pendant le buff"
+
+  - name: "Gemellus"
+    points:
+      - "[Triplication](https://www.wowhead.com/fr/spell=1223847/triplication) : 🛡️ Au pull puis à 50% → 2 clones apparaissent, tanker pour cleave boss + clones au maximum"
+      - "[Piqûre cosmique](https://www.wowhead.com/fr/spell=1283904/piqure-cosmique) :🛡️💊🗡️ Poser les flaques hors du chemin du boss et des clones"
+      - "[Lien neural](https://www.wowhead.com/fr/spell=1253709/lien-neural) : 🛡️💊🗡️ Toucher rapidement le clone indiqué par la flèche sous le personnage → enlève le +20% dégâts subis et le shield"
+      - "[Emprise astrale](https://www.wowhead.com/fr/spell=1224299/emprise-astrale) : 🛡️💊🗡️ Si le lien est encore actif, résister au pull et utiliser un défensif ; sinon ne jamais finir au contact du clone"
+
+  - name: "Degentrius"
+    points:
+      - "[Torrent du Vide](https://www.wowhead.com/fr/spell=1214714/torrent-du-vide) : 🛡️💊🗡️ Après le pull, la salle se découpe en 4 quadrants → prévoir au moins 1 joueur par zone"
+      - "[Essence du Vide instable](https://www.wowhead.com/fr/spell=1215157/essence-du-vide-instable) : 🛡️💊🗡️ 1 soak par quadrant obligatoire → ne jamais en rater un sinon DoT 40s sur tout le groupe"
+      - "[Fragment imposant](https://www.wowhead.com/fr/spell=1280113/fragment-imposant) : 🛡️ Tank seul dans son quadrant → sortir de melee pour le dispel et poser la flaque loin du boss"
+      - "[Entropie dévorante](https://www.wowhead.com/fr/spell=1215897/entropie-devorante) : 🛡️💊🗡️ DoT variable sur plusieurs joueurs → défensif si long debuff ou si overlap avec un soak"
+      - "[Explosion entropique](https://www.wowhead.com/fr/spell=1271066/explosion-entropique) : 🛡️ Boss ne melee pas vraiment → laisser le tank sortir de portée pour mieux gérer Fragment imposant"

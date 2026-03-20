@@ -1,0 +1,42 @@
+# ============================================================
+# Antre de Nalorakk — Fiche donjon 
+#
+# Dungeon anglais : Den of Nalorakk
+# ============================================================
+
+name: "Antre de Nalorakk"
+englishName: "Den of Nalorakk"
+image: "/assets/antre-nalorakk.jpg"
+season: Hors saison
+order: 8
+
+tomtom: "/way #2437 31.4 83.9 Den of Nalorakk Dungeon"
+route: ""
+bonus: ""
+
+importantCalls:
+  - "🔇 Kick : Oiseaux — Ils lancent un sort de silence de zone très punitif, priorité de kick et de focus pour protéger les casters et heals."
+  - "⚠️ Positionnement : Vents ascendants — Cachez-vous derrière les rochers sur le pont pour éviter l'effet. Attention à l'orientation des adds qui bump !"
+  - "🗡️ Focus : Loyal Saberfangs — Ils fixent et poursuivent aléatoirement des membres du groupe."
+
+bosses:
+  - name: "Boss 1 : The Hoardmonger"
+    points:
+      - "[Fournitures gâtées](https://www.wowhead.com/fr/spell=1234233) : 🛡️💊🗡️ Écrasez vite les champignons pourris (Rotten Mushrooms) avant qu'ils n'explosent au bout de 12s. Les heals doivent surveiller les stacks de [Spores toxiques](https://www.wowhead.com/fr/spell=1234846) appliqués en marchant dessus."
+      - "[Heurt de brise-terre](https://www.wowhead.com/fr/spell=1234021) : 🛡️💊🗡️ Sortez immédiatement du cône frontal massif."
+      - "[Rugissement dévorant](https://www.wowhead.com/fr/spell=1234681) / [Beuglement généreux](https://www.wowhead.com/fr/spell=1235125) : 💊 Lourds dégâts de zone (Sonique) sur tout le groupe, à heal."
+      - "[Heurt de pics d’os](https://www.wowhead.com/fr/spell=1235129) : 🛡️💊🗡️ Ne marchez pas dans les piques d'os sous peine d'être lourdement ralenti (-50%) et de prendre des dégâts."
+
+  - name: "Boss 2 : Sentinel of Winter"
+    points:
+      - "[Pointe de givre fracassante](https://www.wowhead.com/fr/spell=1235783) : 🗡️ Focus rapide des Frémicoeur fracturé pour éviter le cumul du débuff [Voile de l’hiver](https://www.wowhead.com/fr/spell=1235829)."
+      - "[Hiver éternel](https://www.wowhead.com/fr/spell=1235656) : 🛡️💊🗡️ Énorme tempête infligeant des dégâts constants et repoussant le groupe. Mettez-vous dans les tas de neige ([Éclat de glace](https://www.wowhead.com/fr/spell=1234314)) laissés par les Shivercores morts pour devenir immunisés aux effets de déplacement."
+      - "[Ouragan déchaîné](https://www.wowhead.com/fr/spell=1235623) : 🛡️💊🗡️ Esquivez les tornades glaciales qui se baladent aléatoirement dans la salle."
+      - "[Fracassement givré](https://www.wowhead.com/fr/spell=1263590) : 🛡️💊🗡️ Soak absolument l'impact des fragments de glace, sinon une explosion immobilise tout le groupe (Root 4s)."
+
+  - name: "Boss 3 : Nalorakk"
+    points:
+      - "[Fureur du dieu de la guerre](https://www.wowhead.com/fr/spell=1243002) : 🛡️💊🗡️ Placez-vous entre l'alliée PNJ (Zul'jarra) et les échos de Nalorakk pour intercepter la charge [Fureur des échos](https://www.wowhead.com/fr/spell=1243408) et absorber les dégâts."
+      - "[Mutilation des échos](https://www.wowhead.com/fr/spell=1242860) : 🛡️💊🗡️ Si ciblé, placez l'écho dans un coin ou contre un mur loin du groupe et de Zul'jarra."
+      - "[Offensive accablante](https://www.wowhead.com/fr/spell=1243585) : 🛡️ (Tank) Énorme tank buster infligeant de lourds dégâts physiques. Mettez-vous derrière Zul'jarra lorsqu'elle cast sa [Posture défensive](https://www.wowhead.com/fr/spell=1261776) pour réduire les dégâts pris de 50%."
+      - "[Rugissement énergique](https://www.wowhead.com/fr/spell=1255385) : 🛡️💊🗡️ Dégâts de zone (Sonique) et léger bump de groupe. Attention à votre positionnement."

@@ -1,0 +1,50 @@
+---
+import faviconUrl from '../assets/logo-easy-donjon.ico?url';
+
+interface Props {
+  title: string;
+  description?: string;
+  enableWowhead?: boolean;
+}
+const {
+  title,
+  description = 'Stratégies ultra condensées des donjons WoW pour Cleave.',
+  enableWowhead = false,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Cleave</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/x-icon" href={faviconUrl} />
+    {enableWowhead && (
+      <>
+        <script is:inline>
+          window.whTooltips = {
+            colorLinks: false,
+            iconizeLinks: true,
+            iconSize: 'small',
+            renameLinks: false,
+          };
+        </script>
+        <script is:inline src="https://wow.zamimg.com/js/tooltips.js" defer></script>
+      </>
+    )}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

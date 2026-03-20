@@ -1,0 +1,69 @@
+# ============================================================
+# Point Nexus Xanas — Fiche donjon
+# ============================================================
+
+name: "Point Nexus Xanas"
+englishName: "Nexus Point Xenas"
+image: "/assets/point-nexus.jpg"
+season: s1
+order: 4
+
+tomtom: "Coordonnées à relever en jeu (zone Midnight)"
+route: "Aile Ouest (éthéré → Kasreth) → conduit → Aile Est (vide → Nysarra) → conduit → console → pont lumière → Lothraxion."
+bonus: "Rogue / Ingé : désamorcer les Arcane Tripwires (nouveaux chemins). Conduits après boss = retour instantané."
+
+importantCalls:
+  - "🔇 Kick : Nullify (Grand Nullifier) — absolu"
+  - "🔇 Kick : Holy Bolt (Lightwrought) — rotation dédiée"
+  - "🔇 Kick : Terror Wave / casts void (selon packs)"
+  - "💊 Dispel Magie : Burning Radiance (Lightwrought)"
+  - "💊 Dispel Malédiction : Creeping Void (Cursed Voidcaller, à la mort)"
+  - "✨ Purge : Holy Echo (Flarebat) si possible avant leur mort"
+  - "⚠️ Mana Batteries activées → casser immédiatement (Corespark Overload = DoT fatal)"
+
+bosses:
+  - name: "Chief Corewright Kasreth"
+    points:
+      - "[Charge de reflux](https://www.wowhead.com/fr/spell=1251772/charge-de-reflux) : 💊🚀 Inflige des dégâts/s → se diriger vers une Matrice de lignes telluriques pour l'exploser et se libérer"
+      - "[Matrice de lignes telluriques](https://www.wowhead.com/fr/spell=1251579/matrice-de-lignes-telluriques) : 🚀 Prioriser les croisements → libère plus d'espace d'un coup"
+      - "[Détonation de noyétincelle](https://www.wowhead.com/fr/spell=1257509/detonation-de-noyetincelle) : 💊🚀 À 100 énergie → surveiller le knockback pour ne pas être jeté dans une flaque"
+      - "[Rupture de flux](https://www.wowhead.com/fr/spell=1264040/rupture-de-flux) : 🚀 Bait les flaques sur les bords ou près des existantes → laissent des zones de déni d'accès 75s"
+
+  - name: "Corewarden Nysarra"
+    points:
+      - "🛡️💊 Boss commence à 60% PV (mais PV totaux normaux) = buff 300%+ pendant sa phase spéciale"
+      - "[Flambée de cicatrice de la lumière](https://www.wowhead.com/fr/spell=1247976/flambee-de-cicatrice-de-la-lumiere) : ✨💊 ≈30s puis chaque 1min → aligner TOUS les CDs offensifs et heal → rester dans le cône malgré les dégâts pour les gains de DPS/heal"
+      - "[Marche éclipsante](https://www.wowhead.com/fr/spell=1249014/marche-eclipsante) : 💊🚀 AoE sur 2 joueurs → spread away → defensive si overlap"
+      - "[Avant-garde du néant](https://www.wowhead.com/fr/spell=1252703/avant-garde-du-neant) : 🛡️🔇 Spawn Dreadflail + Grand Nullifiers → tank pickup flail → interrupt kicks"
+      - "[Fouet ombreux](https://www.wowhead.com/fr/spell=1247937/fouet-ombreux) : 🛡️💊 Channel tank tank (850ms) → applique Incision du Vide → knockback + 50% dégâts reçus 10s → défensif tank requis"
+
+  - name: "Lothraxion"
+    points:
+      - "[Lacération incendiaire](https://www.wowhead.com/fr/spell=1257701/laceration-incendiaire) : 🛡️🚀 Tank cast → crée 2 flaques d'impact qui persistent 6s → placer hors du chemin si plateforme non nettoyée"
+      - "[Dispersion brillante](https://www.wowhead.com/fr/spell=1253855/dispersion-brillante) : 💊🚀 Cible 3 joueurs → spread 8yds → spawn 2 Images fracturées → DoT 6s → défensif si overlap"
+      - "[Image vacillante](https://www.wowhead.com/fr/spell=1255531/image-vacillante) : 🚀 Les images fracturées se téléportent vers joueurs aléatoires → knockback → anticiper les déplacements"
+      - "[Déchirement miroir](https://www.wowhead.com/fr/spell=1271956/dechirement-miroir) : 💊🚀 Contact avec image fracturée → knockback + DoT 6s → éviter les images"
+      - "[Ruse divine](https://www.wowhead.com/fr/spell=1257595/ruse-divine) : 🔇 Intermission → Lothraxion se cache parmi les clones → trouver celui SANS cornes de lumière → interrompre avant Core Exposure"
+      - "[Exposition du cœur](https://www.wowhead.com/fr/spell=1271511/exposition-du-coeur) : 💊 Pénalité pour bad interrupt → +20% dégâts sacrés 1min → danger très élevé"
+
+trash:
+  - name: "🔇 Kicks absolus"
+    points:
+      - "Nullify (Grand Nullifier) → kick absolu chaque cast"
+      - "Holy Bolt (Lightwrought) → rotation kick dédiée"
+      - "Arcing Mana (Circuit Seer) : pas kickable → defensifs + LOS si possible"
+      - "Entropic Leech (Duskfright Herald) : combat drop ou casser le healing absorb"
+
+  - name: "💊 Dispels & Contrôle"
+    points:
+      - "Dispel Magie : Burning Radiance (2 cibles)"
+      - "Dispel Malédiction : Creeping Void (arrive à la mort des Cursed Voidcaller)"
+      - "Purge Holy Echo (Flarebat) avant la mort pour éviter la zone de soins"
+      - "Dreadflail : immune CC → orienter hors groupe, défensif sur Void Lash"
+
+  - name: "⚠️ Mécaniques environnementales"
+    points:
+      - "Arcane Tripwires : Rogue/Ingé peut désamorcer → nouveaux chemins possibles"
+      - "Mana Batteries activées par Circuit Seer → swap immédiat, casser avant 12s"
+      - "Corespark Conduits : buff offensif temporaire → utiliser avec CDs"
+      - "Reformed Voidling / Grand Nullifier : à la mort → Smudge vers Nascent Dreadflail → CC/cleave"

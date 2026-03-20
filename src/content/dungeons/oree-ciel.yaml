@@ -1,0 +1,45 @@
+name: "Orée-du-Ciel"
+englishName: "Skyreach"
+image: "assets/oree-ciel.jpg"
+season: s1
+order: 8
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y"
+route: "Attention premiere partie du donjon aux bumps (add et boss)"
+bonus: "TODO: Infos sur skip/raccourci possibles"
+
+importantCalls:
+  # FORMAT: "EMOJI Action : [Nom Sort](https://www.wowhead.com/fr/spell=SPELL_ID/slug-name)"
+  - "🔇 Kick : [Repoussement](https://www.wowhead.com/fr/spell=1255377) — BUMP de zone"
+  - "⚠️ Positionnement : [Vent de l’effroi](https://www.wowhead.com/fr/spell=1258174) — Attention position (BUMP) !"
+  - "🔇 Kick : [Lumière aveuglante](https://www.wowhead.com/fr/spell=152953) — AOE qui stun et gros dmg."
+
+bosses:
+  - name: "Boss 1 : Ranjit"
+    points:
+      - "[Trombe déferlante](https://www.wowhead.com/fr/spell=1252691) : 🛡️💊🗡️ Bump joueur ciblé, attention position."
+      - "[Éventail de lames](https://www.wowhead.com/fr/spell=153757) : 💊 DOT type saignement en zone."
+      - "[Chakram de vent](https://www.wowhead.com/fr/spell=1258152) : 🛡️💊🗡️ Boomerang à dodge."
+      - "[Vortex de chakrams](https://www.wowhead.com/fr/spell=156793) : 🛡️💊🗡️ Tornade à dodge."
+
+  - name: "Boss 2 : Araknath"
+    points:
+      - "[Vague explosive](https://www.wowhead.com/fr/spell=1279002) : 🛡️ Rester en mélée! Sinon AOE continue."
+      - "[Frappe ardente](https://www.wowhead.com/fr/spell=154132) : 🛡️ Diriger l'attaque hors de la direction du groupe et en sortir."
+      - "[Rayon de lumière](https://www.wowhead.com/fr/spell=154150) : 🛡️💊🗡️ S'interposer devant chaque rayon dans la salle. Attention AOE [Coup de chaleur](https://www.wowhead.com/fr/spell=1281874) a la fin de la canalisation à dodge."
+      - "[Supernova](https://www.wowhead.com/fr/spell=154135) : 💊 AOE qui depend de l'energie récupéré lors des rayon."
+
+  - name: "Boss 3 : Rukhran"
+    points:
+      - "[Griffes brûlantes](https://www.wowhead.com/fr/spell=1253519) : 🛡️💊 Grosse attaque sur tank."
+      - "[Brise-soleil](https://www.wowhead.com/fr/spell=1253510) : 🛡️💊🗡️ AOE sur groupe. Gros HEAL et CD def si possible."
+      - "[Poursuite ardente](https://www.wowhead.com/fr/spell=1253511) : 💊🗡️ La personne ciblé kite l'oiseau, les autres le focus + CC. ⚠️ Attention il faut aussi le tuer hors de oeuf sinon [Brasier de gloire](https://www.wowhead.com/fr/spell=1253416/brasier-de-gloire) réanime plusieur oiseaux. Et le tank ne doit pas quitter le boss sinon AOE !"
+      - "[Plumes incendiaires](https://www.wowhead.com/fr/spell=159381) : 🛡️💊🗡️ Se cacher derriere pylone puis retourner en mélée pour éviter [Hurlement](https://www.wowhead.com/fr/spell=153898/hurlement)."
+
+  - name: "Boss 4 : Viryx"
+    points:
+      - "Jouer proche de l'entrée de la salle en prévision de : [Jeter en bas](https://www.wowhead.com/fr/spell=153954)."
+      - "[Rayon brûlant](https://www.wowhead.com/fr/spell=1253543) : 🛡️💊🗡️ Attaque multiple. HEAL + DEF."
+      - "[Déflagration solaire](https://www.wowhead.com/fr/spell=154396) : 🛡️🗡️ Interruption !"
+      - "[Jeter en bas](https://www.wowhead.com/fr/spell=153954) : 🛡️💊🗡️ Focus ADD. Il peut etre slow."
+      - "[Reflet lenticulaire](https://www.wowhead.com/fr/spell=154044) : 🛡️💊🗡️ Kite sur les bord de salle."

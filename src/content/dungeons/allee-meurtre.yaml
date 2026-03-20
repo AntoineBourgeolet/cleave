@@ -1,0 +1,52 @@
+# ============================================================
+# Allée du Meurtre — Fiche donjon [TEMPLATE - À COMPLÉTER]
+#
+# Dungeon anglais : Murder Row
+# Rempli d'assassins, de lanceurs d'ombre et de rôdeurs.
+# ============================================================
+
+name: "Allée du Meurtre"
+englishName: "Murder Row"
+image: "/assets/allee-meurtre.jpg"
+season: Hors saison
+order: 5
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y" # À compléter avec Zone ID et coordonnées en jeu
+route: "TODO: Décrire la route optimale du donjon"
+bonus: "TODO: Ajouter infos sur skip/raccourci/conduits"
+
+importantCalls:
+  # FORMAT: "EMOJI Action : [Nom Sort](https://www.wowhead.com/fr/spell=SPELL_ID/slug-name) — description courte"
+  # TODO: Remplacer par les vrais spells depuis Method.gg (chercher spell ID sur Wowhead FR)
+  - "🔇 Kick : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "💊 Dispel : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "✨ Autre mécanique clé à annoncer"
+
+bosses:
+  - name: "TODO: Boss 1 (nom anglais du boss)"
+    points:
+      # FORMAT: "[Nom Sort FR](https://www.wowhead.com/fr/spell=SPELL_ID/slug) : EMOJI Description concise"
+      # Trouvez spell ID sur Method.gg → Wowhead FR pour le nom officiel FR
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 🛡️ Description très courte"
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 💊🚀 Description"
+
+  - name: "TODO: Boss 2"
+    points:
+      - "TODO: Ajouter 3-5 abilities principales"
+
+  - name: "TODO: Boss 3 (final)"
+    points:
+      - "TODO: Ajouter 3-5 abilities principales"
+
+trash:
+  - name: "🔇 Priorités Kick"
+    points:
+      - "TODO: Lister les casts importants à interrupt"
+
+  - name: "💊 Dispels/Purges"
+    points:
+      - "TODO: Lister les buffs/debuffs à nettoyer"
+
+  - name: "⚠️ Contrôle/Autres"
+    points:
+      - "TODO: Ajouter d'autres mécaniques notables"

@@ -1,0 +1,456 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import alleeMeurtre from '../../assets/allee-meurtre.jpg';
+import academieDalgethar from '../../assets/academie-dalgethar.jpg';
+import antreNalorakk from '../../assets/antre-nalorakk.jpg';
+import areneCicatrice from '../../assets/arene-cicatrice.jpg';
+import caverneMaisara from '../../assets/caverne-maisara.jpg';
+import flecheCoursevent from '../../assets/fleche-coursevent.jpg';
+import fosseDeSaron from '../../assets/fosse-de-saron.jpg';
+import magisterTerrace from '../../assets/magister_terrace.jpg';
+import oreeCiel from '../../assets/oree-ciel.jpg';
+import pointNexus from '../../assets/point-nexus.jpg';
+import siegeDuTriumvirat from '../../assets/siege-du-triumvirat.jpg';
+import valAveuglant from '../../assets/val-aveuglant.jpg';
+import logoCleave from '../../assets/logo-large-easy-donjon.webp';
+
+export async function getStaticPaths() {
+  const all = await getCollection('dungeons');
+  const sorted = all
+    .sort((a, b) => a.data.order - b.data.order);
+
+  return sorted.map((dungeon, index) => ({
+    params: { slug: dungeon.id },
+    props: {
+      dungeonId: dungeon.id,
+      dungeon: dungeon.data,
+      prev: sorted[index - 1] ?? null,
+      next: sorted[index + 1] ?? null,
+    },
+  }));
+}
+
+const { dungeonId, dungeon, prev, next } = Astro.props;
+
+const dungeonImageById = {
+  'academie-dalgethar': academieDalgethar,
+  'allee-meurtre': alleeMeurtre,
+  'antre-nalorakk': antreNalorakk,
+  'arene-cicatrice': areneCicatrice,
+  'caverne-maisara': caverneMaisara,
+  'fleche-coursevent': flecheCoursevent,
+  'fosse-de-saron': fosseDeSaron,
+  'terasse-magistere': magisterTerrace,
+  'oree-ciel': oreeCiel,
+  'point-nexus-xanas': pointNexus,
+  'siege-du-triumvirat': siegeDuTriumvirat,
+  'val-aveuglant': valAveuglant,
+} as const;
+
+function getDungeonImage(id: keyof typeof dungeonImageById) {
+  return dungeonImageById[id];
+}
+
+/**
+ * Détermine le type de chip selon le contenu du call
+ * pour appliquer la bonne couleur CSS.
+ */
+function chipType(call: string): string {
+  const lower = call.toLowerCase();
+  if (lower.startsWith('⚠️') || lower.startsWith('⚠')) return 'warning';
+  if (lower.startsWith('🔇') || lower.includes('kick') || lower.includes('interr')) return 'kick';
+  if (lower.startsWith('💊') || lower.includes('dispel') || lower.includes('purge maladie') || lower.includes('dispell')) return 'dispel';
+  if (lower.startsWith('✨') || lower.includes('purge') || lower.includes('soothe')) return 'purge';
+  return 'other';
+}
+
+type RoleMarkerKind = 'tank' | 'heal' | 'dps';
+
+function getRoleMarkerKind(token: string): RoleMarkerKind | null {
+  if (token === '💊') return 'heal';
+  if (token === '🛡️' || token === '🛡') return 'tank';
+  if (token === '⚔️' || token === '⚔' || token === '🗡️' || token === '🗡') return 'dps';
+  return null;
+}
+
+function splitLeadingMarker(text: string): { marker: RoleMarkerKind | null; text: string } {
+  const match = text.match(/^(💊|🛡️|🛡|⚔️|⚔|🗡️|🗡)\s+(.*)$/);
+
+  if (!match) {
+    return { marker: null, text };
+  }
+
+  const markerKind = getRoleMarkerKind(match[1]);
+
+  if (!markerKind) {
+    return { marker: null, text };
+  }
+
+  return {
+    marker: markerKind,
+    text: match[2],
+  };
+}
+
+type InlineSegment =
+  | { type: 'text'; text: string }
+  | { type: 'link'; text: string; href: string; wowheadData?: string };
+
+type DisplaySegment =
+  | { type: 'text'; text: string }
+  | { type: 'marker'; kind: RoleMarkerKind };
+
+function parseInlineLinks(text: string): InlineSegment[] {
+  const segments: InlineSegment[] = [];
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(regex)) {
+    const matchIndex = match.index ?? 0;
+
+    if (matchIndex > lastIndex) {
+      segments.push({
+        type: 'text',
+        text: text.slice(lastIndex, matchIndex),
+      });
+    }
+
+    const href = match[2];
+    segments.push({
+      type: 'link',
+      text: match[1],
+      href,
+      wowheadData: href.includes('wowhead.com/fr/') ? 'domain=fr' : undefined,
+    });
+
+    lastIndex = matchIndex + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    segments.push({
+      type: 'text',
+      text: text.slice(lastIndex),
+    });
+  }
+
+  return segments.length > 0 ? segments : [{ type: 'text', text }];
+}
+
+function parseDisplaySegments(text: string): DisplaySegment[] {
+  const parts = text.split(/(💊|🛡️|🛡|⚔️|⚔|🗡️|🗡)/g).filter(Boolean);
+
+  return parts.map((part) => {
+    const markerKind = getRoleMarkerKind(part);
+
+    if (markerKind) {
+      return {
+        type: 'marker',
+        kind: markerKind,
+      };
+    }
+
+    return {
+      type: 'text',
+      text: part,
+    };
+  });
+}
+---
+
+  <Base title={dungeon.name} description={`Fiche strat express — ${dungeon.name} (${dungeon.englishName}) · ${dungeon.season === 'Hors saison' ? 'Hors saison' : 'Saison 1'}`} enableWowhead={true}>
+  <header class="topbar topbar--centered-brand">
+    <div class="brand">
+      <a href="/" aria-label="Retour à l'accueil">
+        <Image src={logoCleave} alt="Cleave" class="brand-logo" loading="eager" width={268} height={68} />
+      </a>
+    </div>
+    <a class="back-link" href="/">← Donjons</a>
+  </header>
+
+  <main class="dungeon-layout">
+
+    <!-- Banner -->
+    <div class="dungeon-banner">
+      <Image
+        src={getDungeonImage(dungeonId as keyof typeof dungeonImageById)}
+        alt={dungeon.name}
+        width={1100}
+        height={260}
+        loading="eager"
+        format="webp"
+      />
+      <div class="dungeon-banner-overlay">
+        <div>
+          <h2>{dungeon.name}</h2>
+          <div class="dungeon-banner-meta">
+            <span>{dungeon.englishName}</span>
+            {dungeon.season === 'Hors saison'
+              ? <span class="tag">Hors saison</span>
+              : <span class="tag">{dungeon.season === 's1' ? 'Saison 1' : dungeon.season}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infos rapides -->
+    <section class="panel">
+      <div class="info-grid">
+        <div class="info-card">
+          <p class="info-card-label">📍 TomTom</p>
+          <div class="tomtom-copy">
+            <code id="tomtom-code">{dungeon.tomtom || '—'}</code>
+            {dungeon.tomtom && (
+              <button class="copy-btn" id="copy-tomtom-btn" title="Copier la commande TomTom">📋</button>
+            )}
+          </div>
+        </div>
+        <div class="info-card">
+          <p class="info-card-label">ℹ️ INFO</p>
+          <p>{dungeon.route}</p>
+        </div>
+        <div class="info-card info-card--bonus">
+          <p class="info-card-label">⭐ Bonus à ramasser</p>
+          <p>{dungeon.bonus}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boss -->
+    <section class="panel">
+      <p class="panel-title">Boss</p>
+      <div class="boss-grid">
+        {dungeon.bosses.map((boss) => (
+          <article class="boss-card" data-boss-card>
+            <h3 class="boss-card-name">{boss.name}</h3>
+            <ul class="bullet-list">
+              {boss.points.map((point) => {
+                const displayPoint = splitLeadingMarker(point);
+
+                return (
+                <li>
+                  {displayPoint.marker && (
+                    <span class:list={["role-marker", `role-marker--${displayPoint.marker}`]} aria-hidden="true">
+                      {displayPoint.marker === 'tank' ? (
+                        <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                          <path d="M12 2.75 5.5 5.3v5.74c0 4.82 3.04 8.14 6.5 9.9 3.46-1.76 6.5-5.08 6.5-9.9V5.3L12 2.75Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                          <path d="M12 6.2 8.45 7.6v3.42c0 2.86 1.64 4.98 3.55 6.1 1.91-1.12 3.55-3.24 3.55-6.1V7.6L12 6.2Z" fill="currentColor" opacity="0.25" />
+                        </svg>
+                      ) : displayPoint.marker === 'heal' ? (
+                        <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                          <path fill="currentColor" d="M3,16H8v5a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V16h5a1,1,0,0,0,1-1V9a1,1,0,0,0-1-1H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V8H3A1,1,0,0,0,2,9v6A1,1,0,0,0,3,16Zm1-6H9a1,1,0,0,0,1-1V4h4V9a1,1,0,0,0,1,1h5v4H15a1,1,0,0,0-1,1v5H10V15a1,1,0,0,0-1-1H4Z" />
+                        </svg>
+                      ) : (
+                        <svg viewBox="-20 -20 330 330" class="role-marker-icon" focusable="false">
+                          <path fill="currentColor" d="M63.951,243.575c-1.945-3.578-4.401-6.907-7.363-9.869c-3.106-3.102-6.626-5.633-10.4-7.63 c-4.51-2.387-0.945-7.5-0.945-7.5c4.616-7.023,8.825-14.079,12.305-20.226l-23.363-23.344H11.504c-4.362,0-7.898-3.539-7.898-7.902 c0-4.361,3.536-7.9,7.898-7.9h25.947c2.1,0,4.107,0.832,5.588,2.312l85.379,85.291c1.483,1.483,2.315,3.495,2.315,5.589v26.073 c0,4.365-3.537,7.897-7.9,7.897c-4.367,0-7.904-3.531-7.904-7.897v-22.798l-23.27-23.24c-6.281,3.707-13.582,8.252-20.816,13.25 C70.842,245.679,66.698,248.629,63.951,243.575z" />
+                          <path fill="currentColor" d="M26.61,237.102c-7.106,0-13.784,2.764-18.812,7.784c-5.019,5.015-7.782,11.686-7.782,18.778 c0,7.097,2.764,13.762,7.782,18.776c5.027,5.016,11.706,7.783,18.812,7.785c7.102,0,13.781-2.77,18.804-7.785 c5.023-5.015,7.79-11.682,7.79-18.776c0-7.093-2.768-13.764-7.79-18.778C40.392,239.866,33.712,237.102,26.61,237.102z" />
+                          <path fill="currentColor" d="M100.985,182.318c-3.502,3.499-9.232,3.499-12.734,0.001l-8.81-8.801c-3.502-3.498-3.502-9.223,0-12.721L229.832,10.564 c3.502-3.498,10.401-6.727,15.33-7.175l36.862-3.352c4.93-0.448,8.596,3.218,8.148,8.148l-3.346,36.791 c-0.448,4.93-3.68,11.825-7.182,15.324l-150.4,150.251c-3.502,3.498-9.232,3.498-12.734,0l-8.822-8.813 c-3.502-3.498-3.502-9.223,0-12.722L233.608,63.213c1.854-1.848,1.856-4.852,0.003-6.702c-1.848-1.853-4.853-1.853-6.709-0.002 L100.985,182.318z" />
+                        </svg>
+                      )}
+                    </span>
+                  )}
+                  {parseInlineLinks(displayPoint.text).map((segment) => (
+                    segment.type === 'link'
+                      ? (
+                        <a
+                          href={segment.href}
+                          class="wowhead-link"
+                          data-wowhead={segment.wowheadData}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {segment.text}
+                        </a>
+                      )
+                      : parseDisplaySegments(segment.text).map((displaySegment) => (
+                        displaySegment.type === 'marker'
+                          ? (
+                            <span class:list={["role-marker", `role-marker--${displaySegment.kind}`]} aria-hidden="true">
+                              {displaySegment.kind === 'tank' ? (
+                                <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                                  <path d="M12 2.75 5.5 5.3v5.74c0 4.82 3.04 8.14 6.5 9.9 3.46-1.76 6.5-5.08 6.5-9.9V5.3L12 2.75Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                                  <path d="M12 6.2 8.45 7.6v3.42c0 2.86 1.64 4.98 3.55 6.1 1.91-1.12 3.55-3.24 3.55-6.1V7.6L12 6.2Z" fill="currentColor" opacity="0.25" />
+                                </svg>
+                              ) : displaySegment.kind === 'heal' ? (
+                                <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                                  <path fill="currentColor" d="M3,16H8v5a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V16h5a1,1,0,0,0,1-1V9a1,1,0,0,0-1-1H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V8H3A1,1,0,0,0,2,9v6A1,1,0,0,0,3,16Zm1-6H9a1,1,0,0,0,1-1V4h4V9a1,1,0,0,0,1,1h5v4H15a1,1,0,0,0-1,1v5H10V15a1,1,0,0,0-1-1H4Z" />
+                                </svg>
+                              ) : (
+                                <svg viewBox="-20 -20 330 330" class="role-marker-icon" focusable="false">
+                                  <path fill="currentColor" d="M63.951,243.575c-1.945-3.578-4.401-6.907-7.363-9.869c-3.106-3.102-6.626-5.633-10.4-7.63 c-4.51-2.387-0.945-7.5-0.945-7.5c4.616-7.023,8.825-14.079,12.305-20.226l-23.363-23.344H11.504c-4.362,0-7.898-3.539-7.898-7.902 c0-4.361,3.536-7.9,7.898-7.9h25.947c2.1,0,4.107,0.832,5.588,2.312l85.379,85.291c1.483,1.483,2.315,3.495,2.315,5.589v26.073 c0,4.365-3.537,7.897-7.9,7.897c-4.367,0-7.904-3.531-7.904-7.897v-22.798l-23.27-23.24c-6.281,3.707-13.582,8.252-20.816,13.25 C70.842,245.679,66.698,248.629,63.951,243.575z" />
+                                  <path fill="currentColor" d="M26.61,237.102c-7.106,0-13.784,2.764-18.812,7.784c-5.019,5.015-7.782,11.686-7.782,18.778 c0,7.097,2.764,13.762,7.782,18.776c5.027,5.016,11.706,7.783,18.812,7.785c7.102,0,13.781-2.77,18.804-7.785 c5.023-5.015,7.79-11.682,7.79-18.776c0-7.093-2.768-13.764-7.79-18.778C40.392,239.866,33.712,237.102,26.61,237.102z" />
+                                  <path fill="currentColor" d="M100.985,182.318c-3.502,3.499-9.232,3.499-12.734,0.001l-8.81-8.801c-3.502-3.498-3.502-9.223,0-12.721L229.832,10.564 c3.502-3.498,10.401-6.727,15.33-7.175l36.862-3.352c4.93-0.448,8.596,3.218,8.148,8.148l-3.346,36.791 c-0.448,4.93-3.68,11.825-7.182,15.324l-150.4,150.251c-3.502,3.498-9.232,3.498-12.734,0l-8.822-8.813 c-3.502-3.498-3.502-9.223,0-12.722L233.608,63.213c1.854-1.848,1.856-4.852,0.003-6.702c-1.848-1.853-4.853-1.853-6.709-0.002 L100.985,182.318z" />
+                                </svg>
+                              )}
+                            </span>
+                          )
+                          : displaySegment.text
+                      ))
+                  ))}
+                </li>
+              )})}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Appels importants -->
+    <section class="panel">
+      <p class="panel-title">Appels importants (kicks · dispels · mécaniques)</p>
+      <div class="calls-list calls-list--spaced">
+        {dungeon.importantCalls.map((call) => {
+          const displayCall = splitLeadingMarker(call);
+
+          return (
+          <span class="call-chip" data-type={chipType(call)}>
+            {displayCall.marker && (
+              <span class:list={["role-marker", `role-marker--${displayCall.marker}`]} aria-hidden="true">
+                {displayCall.marker === 'tank' ? (
+                  <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                    <path d="M12 2.75 5.5 5.3v5.74c0 4.82 3.04 8.14 6.5 9.9 3.46-1.76 6.5-5.08 6.5-9.9V5.3L12 2.75Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                    <path d="M12 6.2 8.45 7.6v3.42c0 2.86 1.64 4.98 3.55 6.1 1.91-1.12 3.55-3.24 3.55-6.1V7.6L12 6.2Z" fill="currentColor" opacity="0.25" />
+                  </svg>
+                ) : displayCall.marker === 'heal' ? (
+                  <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                    <path fill="currentColor" d="M3,16H8v5a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V16h5a1,1,0,0,0,1-1V9a1,1,0,0,0-1-1H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V8H3A1,1,0,0,0,2,9v6A1,1,0,0,0,3,16Zm1-6H9a1,1,0,0,0,1-1V4h4V9a1,1,0,0,0,1,1h5v4H15a1,1,0,0,0-1,1v5H10V15a1,1,0,0,0-1-1H4Z" />
+                  </svg>
+                ) : (
+                  <svg viewBox="-20 -20 330 330" class="role-marker-icon" focusable="false">
+                    <path fill="currentColor" d="M63.951,243.575c-1.945-3.578-4.401-6.907-7.363-9.869c-3.106-3.102-6.626-5.633-10.4-7.63 c-4.51-2.387-0.945-7.5-0.945-7.5c4.616-7.023,8.825-14.079,12.305-20.226l-23.363-23.344H11.504c-4.362,0-7.898-3.539-7.898-7.902 c0-4.361,3.536-7.9,7.898-7.9h25.947c2.1,0,4.107,0.832,5.588,2.312l85.379,85.291c1.483,1.483,2.315,3.495,2.315,5.589v26.073 c0,4.365-3.537,7.897-7.9,7.897c-4.367,0-7.904-3.531-7.904-7.897v-22.798l-23.27-23.24c-6.281,3.707-13.582,8.252-20.816,13.25 C70.842,245.679,66.698,248.629,63.951,243.575z" />
+                    <path fill="currentColor" d="M26.61,237.102c-7.106,0-13.784,2.764-18.812,7.784c-5.019,5.015-7.782,11.686-7.782,18.778 c0,7.097,2.764,13.762,7.782,18.776c5.027,5.016,11.706,7.783,18.812,7.785c7.102,0,13.781-2.77,18.804-7.785 c5.023-5.015,7.79-11.682,7.79-18.776c0-7.093-2.768-13.764-7.79-18.778C40.392,239.866,33.712,237.102,26.61,237.102z" />
+                    <path fill="currentColor" d="M100.985,182.318c-3.502,3.499-9.232,3.499-12.734,0.001l-8.81-8.801c-3.502-3.498-3.502-9.223,0-12.721L229.832,10.564 c3.502-3.498,10.401-6.727,15.33-7.175l36.862-3.352c4.93-0.448,8.596,3.218,8.148,8.148l-3.346,36.791 c-0.448,4.93-3.68,11.825-7.182,15.324l-150.4,150.251c-3.502,3.498-9.232,3.498-12.734,0l-8.822-8.813 c-3.502-3.498-3.502-9.223,0-12.722L233.608,63.213c1.854-1.848,1.856-4.852,0.003-6.702c-1.848-1.853-4.853-1.853-6.709-0.002 L100.985,182.318z" />
+                  </svg>
+                )}
+              </span>
+            )}
+            {parseInlineLinks(displayCall.text).map((segment) => (
+              segment.type === 'link'
+                ? (
+                  <a
+                    href={segment.href}
+                    class="wowhead-link"
+                    data-wowhead={segment.wowheadData}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {segment.text}
+                  </a>
+                )
+                : parseDisplaySegments(segment.text).map((displaySegment) => (
+                  displaySegment.type === 'marker'
+                    ? (
+                      <span class:list={["role-marker", `role-marker--${displaySegment.kind}`]} aria-hidden="true">
+                        {displaySegment.kind === 'tank' ? (
+                          <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                            <path d="M12 2.75 5.5 5.3v5.74c0 4.82 3.04 8.14 6.5 9.9 3.46-1.76 6.5-5.08 6.5-9.9V5.3L12 2.75Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                            <path d="M12 6.2 8.45 7.6v3.42c0 2.86 1.64 4.98 3.55 6.1 1.91-1.12 3.55-3.24 3.55-6.1V7.6L12 6.2Z" fill="currentColor" opacity="0.25" />
+                          </svg>
+                        ) : displaySegment.kind === 'heal' ? (
+                          <svg viewBox="0 0 24 24" class="role-marker-icon" focusable="false">
+                            <path fill="currentColor" d="M3,16H8v5a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V16h5a1,1,0,0,0,1-1V9a1,1,0,0,0-1-1H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V8H3A1,1,0,0,0,2,9v6A1,1,0,0,0,3,16Zm1-6H9a1,1,0,0,0,1-1V4h4V9a1,1,0,0,0,1,1h5v4H15a1,1,0,0,0-1,1v5H10V15a1,1,0,0,0-1-1H4Z" />
+                          </svg>
+                        ) : (
+                          <svg viewBox="-20 -20 330 330" class="role-marker-icon" focusable="false">
+                            <path fill="currentColor" d="M63.951,243.575c-1.945-3.578-4.401-6.907-7.363-9.869c-3.106-3.102-6.626-5.633-10.4-7.63 c-4.51-2.387-0.945-7.5-0.945-7.5c4.616-7.023,8.825-14.079,12.305-20.226l-23.363-23.344H11.504c-4.362,0-7.898-3.539-7.898-7.902 c0-4.361,3.536-7.9,7.898-7.9h25.947c2.1,0,4.107,0.832,5.588,2.312l85.379,85.291c1.483,1.483,2.315,3.495,2.315,5.589v26.073 c0,4.365-3.537,7.897-7.9,7.897c-4.367,0-7.904-3.531-7.904-7.897v-22.798l-23.27-23.24c-6.281,3.707-13.582,8.252-20.816,13.25 C70.842,245.679,66.698,248.629,63.951,243.575z" />
+                            <path fill="currentColor" d="M26.61,237.102c-7.106,0-13.784,2.764-18.812,7.784c-5.019,5.015-7.782,11.686-7.782,18.778 c0,7.097,2.764,13.762,7.782,18.776c5.027,5.016,11.706,7.783,18.812,7.785c7.102,0,13.781-2.77,18.804-7.785 c5.023-5.015,7.79-11.682,7.79-18.776c0-7.093-2.768-13.764-7.79-18.778C40.392,239.866,33.712,237.102,26.61,237.102z" />
+                            <path fill="currentColor" d="M100.985,182.318c-3.502,3.499-9.232,3.499-12.734,0.001l-8.81-8.801c-3.502-3.498-3.502-9.223,0-12.721L229.832,10.564 c3.502-3.498,10.401-6.727,15.33-7.175l36.862-3.352c4.93-0.448,8.596,3.218,8.148,8.148l-3.346,36.791 c-0.448,4.93-3.68,11.825-7.182,15.324l-150.4,150.251c-3.502,3.498-9.232,3.498-12.734,0l-8.822-8.813 c-3.502-3.498-3.502-9.223,0-12.722L233.608,63.213c1.854-1.848,1.856-4.852,0.003-6.702c-1.848-1.853-4.853-1.853-6.709-0.002 L100.985,182.318z" />
+                          </svg>
+                        )}
+                      </span>
+                    )
+                    : displaySegment.text
+                ))
+            ))}
+          </span>
+        )})}
+      </div>
+    </section>
+
+
+    <!-- Navigation précédent / suivant -->
+    <nav class="dungeon-nav">
+      {prev ? (
+        <a class="dungeon-nav-btn prev" href={`/donjons/${prev.id}/`}>
+          <Image
+            src={getDungeonImage(prev.id as keyof typeof dungeonImageById)}
+            alt={prev.data.name}
+            width={44}
+            height={44}
+            loading="lazy"
+            format="webp"
+          />
+          <div>
+            <p class="nav-btn-label">← Précédent</p>
+            <p class="nav-btn-name">{prev.data.name}</p>
+          </div>
+        </a>
+      ) : <div />}
+
+      {next ? (
+        <a class="dungeon-nav-btn next" href={`/donjons/${next.id}/`}>
+          <Image
+            src={getDungeonImage(next.id as keyof typeof dungeonImageById)}
+            alt={next.data.name}
+            width={44}
+            height={44}
+            loading="lazy"
+            format="webp"
+          />
+          <div>
+            <p class="nav-btn-label">Suivant →</p>
+            <p class="nav-btn-name">{next.data.name}</p>
+          </div>
+        </a>
+      ) : <div />}
+    </nav>
+
+  </main>
+</Base>
+
+<script>
+  const btn = document.getElementById('copy-tomtom-btn');
+  const code = document.getElementById('tomtom-code');
+  if (btn && code) {
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(code.textContent ?? '').then(() => {
+        btn.textContent = '✅';
+        setTimeout(() => { btn.textContent = '📋'; }, 1500);
+      });
+    });
+  }
+
+  const bossCards = Array.from(document.querySelectorAll<HTMLElement>('[data-boss-card]'));
+
+  function clearBossZoom(card: HTMLElement) {
+    card.classList.remove('boss-card--zoomed');
+    card.setAttribute('aria-expanded', 'false');
+  }
+
+  bossCards.forEach((card) => {
+    card.setAttribute('aria-expanded', 'false');
+    card.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('a')) return;
+
+      const isZoomed = card.classList.contains('boss-card--zoomed');
+
+      bossCards.forEach((currentCard) => {
+        if (currentCard !== card) {
+          clearBossZoom(currentCard);
+        }
+      });
+
+      if (isZoomed) {
+        clearBossZoom(card);
+        return;
+      }
+
+      card.classList.add('boss-card--zoomed');
+      card.setAttribute('aria-expanded', 'true');
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+</script>

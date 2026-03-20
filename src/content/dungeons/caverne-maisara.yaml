@@ -1,0 +1,79 @@
+# ============================================================
+# Caverne de Maisara — Fiche donjon
+#
+# COMMENT EDITER :
+#   - Chaque tiret "-" = une ligne affichée sur la fiche
+#   - Colle tes nouvelles infos entre guillemets
+#   - Pas besoin de toucher au code
+# ============================================================
+
+name: "Caverne de Maisara"
+englishName: "Maisara Caverns"
+image: "/assets/caverne-maisara.jpg"
+season: s1
+order: 1
+
+tomtom: "Coordonnées à relever en jeu (zone Midnight)"
+route: "Partir à droite pour récupérer Hearty Vilebranch Stew (leech/avoid +3% · 30min · persist death)."
+bonus: "Massive Freezing Traps interactifs : stun 5s immunisé même sur boss → garder pour casts critiques."
+
+importantCalls:
+  - "🔇 Kick : Hex (Ritual Hexxer) — absolu"
+  - "🔇 Kick : Shrink (Umbral Shadowbinder)"
+  - "🔇 Kick : Spirit Rend (Tormented Shade)"
+  - "🔇 Kick : Piercing Screech (Gloomwing Bat)"
+  - "💊 Dispel Maladie : Infected Pinions (Nekraxx — tout le groupe)"
+  - "✨ Dispel Magie : Ritual Firebrand / Frost Nova (Hollow Soulrender)"
+  - "✨ Purge : Grim Ward (Grim Skirmisher) — pas tous en même temps"
+
+bosses:
+  - name: "Muro'jin & Nekraxx"
+    points:
+      - "🗡️ Équilibrer les PV des 2 boss : si Muro'jin reste seul il lance [Ressusciter le familier](https://www.wowhead.com/fr/spell=1249789/ressusciter-le-familier), si Nekraxx reste seule elle gagne un buff de dégâts cumulable"
+      - "[Piège givrant](https://www.wowhead.com/fr/spell=1260731/piege-givrant) : 🚀 Jouer groupé pour concentrer les pièges et préserver l'espace quand ils explosent"
+      - "[Lance de flanquement](https://www.wowhead.com/fr/spell=1266480/lance-de-flanquement) : 🛡️🚀 Tank buster avec knockback + bleed → prévoir mobilité ou mur pour ne pas perdre le boss"
+      - "[Tir de barrage](https://www.wowhead.com/fr/spell=1260643/tir-de-barrage) : 🚀 La cible reste immobile, tout le reste sort du cône ; le ralentissement n'est pas prioritaire en dispel"
+      - "[Pennes infectées](https://www.wowhead.com/fr/spell=1246666/pennes-infectees) : 💊 Dispel maladie dès que possible, c'est la source principale de dégâts de groupe"
+      - "[Piqué de charognard](https://www.wowhead.com/fr/spell=1249479/pique-de-charognard) : 🚀 Le joueur ciblé doit entrer dans un piège AVANT la charge pour stun Nekraxx 5s"
+      - "[Tempête de plumes fétides](https://www.wowhead.com/fr/spell=1243900/tempete-de-plumes-fetides) : 💊🚀 Après le leap, esquiver les plumes et rester suffisamment packés pour limiter les déplacements du boss"
+
+  - name: "Vordaza"
+    points:
+      - "[Miasme flétrissant](https://www.wowhead.com/fr/spell=1264987/miasme-fletrissant) : 💊 Dégâts constants pendant tout le combat → ne pas chevaucher inutilement les autres mécaniques"
+      - "[Fantômes extirpés](https://www.wowhead.com/fr/spell=1251204/fantomes-extirpes) : 🚀 Faire exploser les fantômes entre eux, jamais sur les joueurs ; échelonner les détonations pour laisser respirer le heal"
+      - "[Convergence nécrotique](https://www.wowhead.com/fr/spell=1250708/convergence-necrotique) : 🗡️💊 Après une invocation paire, burst le shield puis interrompre vite avant que l'AoE ne devienne ingérable"
+      - "[Drain d’âme](https://www.wowhead.com/fr/spell=1251554/drain-dame) : 🛡️ Tank channel → défensif obligatoire"
+      - "[Défaire](https://www.wowhead.com/fr/spell=1252054/defaire) : 🚀 Frontal lent qui balaie la salle → anticiper très tôt et éviter de faire exploser les fantômes près du centre"
+
+  - name: "Rak'tul, Vessel of Souls"
+    points:
+      - "[Réceptacle gorgé de trépas](https://www.wowhead.com/fr/spell=1248863/receptacle-gorge-de-trepas) : 💊 Dégâts passifs réguliers + orbes à éviter pendant toute la phase boss"
+      - "[Écrasement d’âmes](https://www.wowhead.com/fr/spell=1252676/ecrasement-dames) : 🚀🗡️ Les 3 joueurs marqués posent les totems ensemble pour les cleave rapidement"
+      - "[Lien d’âme](https://www.wowhead.com/fr/spell=1252777/lien-dame) : 💊🚀 Les totems canalisent sur des joueurs et les attirent → les détruire avant qu'ils ne restent trop longtemps actifs"
+      - "[Brise-esprit](https://www.wowhead.com/fr/spell=1251023/brise-esprit) : 🛡️🚀 Défensif tank sur le channel, puis finir dos à un brasero ou avec mobilité pour annuler le knockback final"
+      - "[Rugissement trancheur d’âme](https://www.wowhead.com/fr/spell=1253788/rugissement-trancheur-dame) : 🗡️💊 Détruite TOUS les totems avant le cast, sinon gros dégâts quand ils éclatent ; le boss est ensuite stun"
+      - "[Flétrissement d’âme](https://www.wowhead.com/fr/spell=1253844/fletrissement-dame) : 💊 Intermission → plus vous tardez à remonter, plus le DoT devient dangereux"
+      - "[Souffrance éternelle](https://www.wowhead.com/fr/spell=1254010/souffrance-eternelle) : 🔇🚀 Interrompre/CC les 6 âmes malveillantes pour retirer les slows et obtenir le buff de groupe ; garder la 6e pour refresh avant le retour boss si possible"
+
+trash:
+  - name: "🔇 Kicks prioritaires"
+    points:
+      - "Hex (Ritual Hexxer) → kick absolu · dispel magie si ça passe"
+      - "Shrink (Umbral Shadowbinder) → kick ou CC pour interrompre"
+      - "Spirit Rend (Tormented Shade) → kick + dispel magie le DoT"
+      - "Piercing Screech (Gloomwing Bat) → kick, sinon tank oriente hors groupe"
+      - "Reanimation (Reanimated Warrior) → kick ou CC"
+
+  - name: "💊 Dispels & Contrôle"
+    points:
+      - "Purge Grim Ward (Grim Skirmisher) : échelonner, chaque rupture = AoE sur groupe"
+      - "Frost Nova (Hollow Soulrender) → dispel magie ou freedom"
+      - "Blood Frenzy (Frenzied Berserker) → soothe si dispo"
+      - "Hex Guardian & Dread Souleater : CC impossible → defensifs + CD groupe"
+
+  - name: "⚠️ Mécaniques spéciales"
+    points:
+      - "Lost Souls (partout) : ne pas les toucher → explosion + root"
+      - "Hollow Soulrender → Rend Souls canal : garder les Lost Souls à l'écart"
+      - "Restless Gnarldin : AoE shadow sur melee passif → ne pas laisser traîner"
+      - "Rokh'zal (mini-boss) : Ritual Sacrifice → freedom ou casser les entraves"

@@ -1,0 +1,141 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import alleeMeurtre from '../assets/allee-meurtre.jpg';
+import academieDalgethar from '../assets/academie-dalgethar.jpg';
+import antreNalorakk from '../assets/antre-nalorakk.jpg';
+import areneCicatrice from '../assets/arene-cicatrice.jpg';
+import caverneMaisara from '../assets/caverne-maisara.jpg';
+import flecheCoursevent from '../assets/fleche-coursevent.jpg';
+import fosseDeSaron from '../assets/fosse-de-saron.jpg';
+import magisterTerrace from '../assets/magister_terrace.jpg';
+import oreeCiel from '../assets/oree-ciel.jpg';
+import pointNexus from '../assets/point-nexus.jpg';
+import siegeDuTriumvirat from '../assets/siege-du-triumvirat.jpg';
+import valAveuglant from '../assets/val-aveuglant.jpg';
+import logoCleave from '../assets/logo-large-easy-donjon.webp';
+
+const allDungeons = await getCollection('dungeons');
+const s1 = allDungeons
+  .filter((d) => d.data.season === 's1')
+  .sort((a, b) => a.data.order - b.data.order);
+const hors = allDungeons
+  .filter((d) => d.data.season === 'Hors saison')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const dungeonImageById = {
+  'academie-dalgethar': academieDalgethar,
+  'allee-meurtre': alleeMeurtre,
+  'antre-nalorakk': antreNalorakk,
+  'arene-cicatrice': areneCicatrice,
+  'caverne-maisara': caverneMaisara,
+  'fleche-coursevent': flecheCoursevent,
+  'fosse-de-saron': fosseDeSaron,
+  'terasse-magistere': magisterTerrace,
+  'oree-ciel': oreeCiel,
+  'point-nexus-xanas': pointNexus,
+  'siege-du-triumvirat': siegeDuTriumvirat,
+  'val-aveuglant': valAveuglant,
+} as const;
+
+function getDungeonImage(id: keyof typeof dungeonImageById) {
+  return dungeonImageById[id];
+}
+---
+
+<Base title="Saison 1">
+  <header class="topbar topbar--center">
+    <div class="brand">
+      <a href="/" aria-label="Retour à l'accueil">
+        <Image src={logoCleave} alt="Cleave" class="brand-logo" loading="eager" width={268} height={68} />
+      </a>
+    </div>
+  </header>
+
+  <main class="home-layout">
+    <!-- Sidebar saisons -->
+    <aside class="sidebar">
+      <p class="sidebar-title">Saisons</p>
+      <button class="season-btn soon" type="button" disabled>🔒 Saison 2 (prochainement)</button>
+      <button class="season-btn active" type="button" data-tab="s1">⚔️ Saison 1</button>
+      <button class="season-btn" type="button" data-tab="hors">📦 Hors saison</button>
+    </aside>
+
+    <!-- Grid de donjons -->
+    <div class="home-content">
+
+      <!-- Saison 1 -->
+      <div id="tab-s1" class="tab-section">
+        <div class="season-header">
+          <h2>Saison 1 <span class="badge-active">Active</span></h2>
+          <p>{s1.length} donjon{s1.length > 1 ? 's' : ''}</p>
+        </div>
+        <div class="dungeon-grid">
+          {s1.map((dungeon) => (
+            <a class="dungeon-card" href={`/donjons/${dungeon.id}/`}>
+              <div class="dungeon-card-thumb">
+                <Image
+                  src={getDungeonImage(dungeon.id as keyof typeof dungeonImageById)}
+                  alt={dungeon.data.name}
+                  loading="lazy"
+                  width={320}
+                  height={130}
+                  format="webp"
+                />
+              </div>
+              <div class="dungeon-card-body">
+                <h3>{dungeon.data.name}</h3>
+                <p>{dungeon.data.englishName}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Hors saison -->
+      <div id="tab-hors" class="tab-section hidden">
+        <div class="season-header">
+          <h2>Hors saison</h2>
+          <p>{hors.length} donjon{hors.length > 1 ? 's' : ''}</p>
+        </div>
+        <div class="dungeon-grid">
+          {hors.map((dungeon) => (
+            <a class="dungeon-card" href={`/donjons/${dungeon.id}/`}>
+              <div class="dungeon-card-thumb">
+                <Image
+                  src={getDungeonImage(dungeon.id as keyof typeof dungeonImageById)}
+                  alt={dungeon.data.name}
+                  loading="lazy"
+                  width={320}
+                  height={130}
+                  format="webp"
+                />
+              </div>
+              <div class="dungeon-card-body">
+                <h3>{dungeon.data.name}</h3>
+                <p>{dungeon.data.englishName}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.season-btn[data-tab]');
+  const sections = document.querySelectorAll<HTMLElement>('.tab-section');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab!;
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      sections.forEach((s) => {
+        s.classList.toggle('hidden', s.id !== `tab-${tab}`);
+      });
+    });
+  });
+</script>

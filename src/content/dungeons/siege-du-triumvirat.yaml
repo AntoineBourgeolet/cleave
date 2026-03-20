@@ -1,0 +1,48 @@
+name: "Siège du Triumvirat"
+englishName: "Seat of the Triumvirate"
+image: "assets/siege-du-triumvirat.jpg"
+season: s1
+order: 9
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y"
+route: "Attention aux packs avant chaque boss: beaucoup de casts dangereux + zones au sol."
+bonus: "TODO: Infos sur skip/raccourci possibles"
+
+importantCalls:
+  - "🔇 Kick : [Éclair ombreux](https://www.wowhead.com/fr/spell=1262510) — Dégâts ciblés."
+  - "🔇 Kick : [Hurlement d'effroi](https://www.wowhead.com/fr/spell=248831) — Jouer en mêlée pour éviter le saut loin."
+  - "⚠️ Positionnement : [Chaînes de subjugation](https://www.wowhead.com/fr/spell=1277343) — Snare + dégâts de groupe, gérer les déplacements."
+
+bosses:
+  - name: "Boss 1 : Zuraal"
+    points:
+      - "[Entaille du Vide](https://www.wowhead.com/fr/spell=1263440) : 🛡️ Grosse attaque tank"
+      - "[Décimation](https://www.wowhead.com/fr/spell=244579) + [Déversement du Vide](https://www.wowhead.com/fr/spell=244588) : 🛡️💊🗡️ S'écarter, poser la zone loin, possible de sortir du cercle avec mobilité."
+      - "[Paume de vacuité](https://www.wowhead.com/fr/spell=1268916) : 🛡️💊🗡️ Frontal à dodge."
+      - "[Heurt suintant](https://www.wowhead.com/fr/spell=1263399) : 🛡️💊🗡️ Focus les adds, ils ne doivent jamais toucher le boss."
+      - "[Vide fracassant](https://www.wowhead.com/fr/spell=1263297) : 🛡️💊🗡️ CC les adds pendant le cast et prévoir un défensif."
+
+  - name: "Boss 2 : Saprish"
+    points:
+      - "[Hurlement d'effroi](https://www.wowhead.com/fr/spell=248831) : 🔇 Interruption prioritaire."
+      - "[Traquenard des ombres](https://www.wowhead.com/fr/spell=245742) : 💊 Gros dégâts, heal à anticiper."
+      - "[Bombe de Vide](https://www.wowhead.com/fr/spell=246026) : 🛡️💊🗡️ Dodge, sinon soak solo juste avant explosion (tank/immune idéalement)."
+      - "[Ruée phasique](https://www.wowhead.com/fr/spell=1280067) : 🛡️💊🗡️ S'écarter et poser la ruée sur les bombes pour les détruire."
+      - "[Surcharge](https://www.wowhead.com/fr/spell=1263523) : 🛡️💊 Défensif et vérifier qu'il ne reste aucune bombe."
+
+  - name: "Boss 3 : Nezhar"
+    points:
+      - "[Attaque mentale](https://www.wowhead.com/fr/spell=244750) : 🔇 Kick prioritaire."
+      - "[Vagues ombreuses](https://www.wowhead.com/fr/spell=1264257) via [Portes de l’Abîme](https://www.wowhead.com/fr/spell=1277358) : 🛡️💊🗡️ Dodge les vagues."
+      - "[Infusion de Vide massive](https://www.wowhead.com/fr/spell=1263542) : 💊 Gros heal sur 3 cibles."
+      - "[Tentacules ombreux](https://www.wowhead.com/fr/spell=1263538) + [Entrée instable](https://www.wowhead.com/fr/spell=249082) + [Fouet mental](https://www.wowhead.com/fr/spell=1268733) : 🛡️💊🗡️ CC + focus les tentacules rapidement."
+      - "[Effondrement du Vide](https://www.wowhead.com/fr/spell=1263529) puis [Tempête de Vide](https://www.wowhead.com/fr/spell=1265030) : 🛡️💊🗡️ Anticiper le bump et revenir vite au centre."
+
+  - name: "Boss 4 : L'ura"
+    points:
+      - "[Notes de désespoir](https://www.wowhead.com/fr/spell=1265419) + [Complainte du désespoir](https://www.wowhead.com/fr/spell=1265421) : 🛡️💊🗡️ S'écarter pour couvrir les notes jusqu'à les silence."
+      - "[Rayon discordant](https://www.wowhead.com/fr/spell=1265464) : 🛡️💊🗡️ Viser une note pour la silence."
+      - "[Désintégration](https://www.wowhead.com/fr/spell=1264196) : 🛡️💊🗡️ Dodge les rayons en rotation."
+      - "[Lance abyssale](https://www.wowhead.com/fr/spell=1267207) : 🛡️ Grosse attaque tank à mitiger."
+      - "[Chœur macabre](https://www.wowhead.com/fr/spell=1265689) : 🛡️💊🗡️ Dodge autour des notes actives."
+      - "[Vide siphonnant](https://www.wowhead.com/fr/spell=1265999) : 🗡️ Fenêtre de burst pendant le stun boss."

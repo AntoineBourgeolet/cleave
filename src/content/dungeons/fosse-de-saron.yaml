@@ -1,0 +1,41 @@
+name: "Fosse de Saron"
+englishName: "Pit of Saron"
+image: "assets/fosse-de-saron.jpg"
+season: s1
+order: 11
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y"
+route: "Progression linéaire, packs très chargés en dispell/kick avant chaque boss."
+bonus: "TODO: Infos sur skip/raccourci possibles"
+
+importantCalls:
+  - "🔇 Kick : [Trait de l’ombre](https://www.wowhead.com/fr/spell=1218458) — Dégâts ciblés dangereux en trash."
+  - "💊 Dispel : [Malédiction de tourment](https://www.wowhead.com/fr/spell=1258434) — Sinon absorb à gérer."
+  - "⚠️ Positionnement : [Lancer de saronite](https://www.wowhead.com/fr/spell=1261299) — Placer les minerais proprement pour gérer la LOS du boss 1."
+
+bosses:
+  - name: "Boss 1 : Maître-forge Gargivre"
+    points:
+      - "[Lancer de saronite](https://www.wowhead.com/fr/spell=1261299) : 🛡️💊🗡️ Deux minerais à placer (un tank, un groupe), dodge les impacts."
+      - "[Brise-minerai](https://www.wowhead.com/fr/spell=1261546) : 🛡️ Utiliser pour casser le minerai tank et éviter le stun."
+      - "[Surcharge glaciale](https://www.wowhead.com/fr/spell=1262029) : 🛡️💊🗡️ Salve provenant de la forge. Se positionner derrière le minerai restant."
+      - "[Cryo-éclats](https://www.wowhead.com/fr/spell=1261921) + [Froid de siphonnage](https://www.wowhead.com/fr/spell=1261806) : 💊 Gros dégâts de groupe à remonter."
+      - "[Morceaux de minerai](https://www.wowhead.com/fr/spell=1272433) : 🛡️💊🗡️ Dodge permanent." 
+
+  - name: "Boss 2 : Ick et Krick"
+    points:
+      - "[Transmission d’ombre](https://www.wowhead.com/fr/spell=1264027) + [Bombe d’ombre](https://www.wowhead.com/fr/spell=1271678) : 🛡️💊🗡️ Focus les adds avant transformation."
+      - "[Ombrelien](https://www.wowhead.com/fr/spell=1264186) : 🔇🛡️💊🗡️ Interruption prioritaire, dispell/CC possible."
+      - "[Trait de mort](https://www.wowhead.com/fr/spell=1278893) : 🔇🛡️🗡️ Kick prioritaire de Krick."
+      - "[Choc pestifère](https://www.wowhead.com/fr/spell=1264287) + [Expulsion pestiférée](https://www.wowhead.com/fr/spell=1264336) : 🛡️💊🗡️ Mitiger, placer les flaques, dodge les expulsions."
+      - "[Démolis-les, Ick !](https://www.wowhead.com/fr/spell=1264363) : 🛡️💊🗡️ Kite le fixate dans les flaques existantes pour conserver l'espace."
+      - "[Lance d’ombre](https://www.wowhead.com/fr/spell=1279667) : 💊 Heal soutenu." 
+
+  - name: "Boss 3 : Seigneur du fléau Tyrannus"
+    points:
+      - "[Infusion osseuse](https://www.wowhead.com/fr/spell=1276648) + [Déflagration de givre](https://www.wowhead.com/fr/spell=1262745) : 🛡️💊🗡️ Identifier les piles infusées et les neutraliser en AOE."
+      - "[Marque du seigneur du Fléau](https://www.wowhead.com/fr/spell=1262582) + [Jugement du seigneur du Fléau](https://www.wowhead.com/fr/spell=1263671) : 🛡️ Gros combo tank, anticiper mitigation + knockback."
+      - "[Emprise de la mort](https://www.wowhead.com/fr/spell=1263756) + [Barrage de glace](https://www.wowhead.com/fr/spell=1276948) : 🛡️💊🗡️ Dodge et repositionnement rapide."
+      - "[Armée des morts](https://www.wowhead.com/fr/spell=1263406) : 🛡️💊🗡️ Focus immédiat des adds."
+      - "[Trait de peste](https://www.wowhead.com/fr/spell=1262941) + [Frappes de pourrissement](https://www.wowhead.com/fr/spell=1262929) : 🔇💊 Kick + dispell tank."
+      - "[Pulsation purulente](https://www.wowhead.com/fr/spell=1262997) : 💊 Priorité de kill sur les gangrelins."

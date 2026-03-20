@@ -1,0 +1,49 @@
+# ============================================================
+# Le Val Aveuglant — Fiche donjon [TEMPLATE - À COMPLÉTER]
+#
+# Dungeon anglais : Blinding Vale
+# Lumière/Naaru, zones éblouissantes avec constructs sacrés
+# ============================================================
+
+name: "Le Val Aveuglant"
+englishName: "Blinding Vale"
+image: "/assets/val-aveuglant.jpg"
+season: Hors saison
+order: 8
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y" # À compléter
+route: "TODO: Route sécurisée d'entrée + timing pulls"
+bonus: "TODO: Infos sur skip/raccourci/conduits sacrés"
+
+importantCalls:
+  # FORMAT: "EMOJI Action : [Nom Sort](https://www.wowhead.com/fr/spell=SPELL_ID/slug-name)"
+  - "🔇 Kick : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "💊 Dispel : [NOM_SPELL](https://www.wowhead.com/fr/spell=SPELL_ID) — description"
+  - "✨ Autre mécanique clé : description"
+
+bosses:
+  - name: "TODO: Boss 1 (nom)"
+    points:
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 🛡️ Description"
+      - "[SPELL_NAME](https://www.wowhead.com/fr/spell=SPELL_ID) : 💊🚀 Description"
+
+  - name: "TODO: Boss 2 (nom)"
+    points:
+      - "TODO: Ajouter 3-5 abilities"
+
+  - name: "TODO: Boss final (nom)"
+    points:
+      - "TODO: Ajouter mécaniques principales et phases"
+
+trash:
+  - name: "🔇 Kicks/Silence/Fear"
+    points:
+      - "TODO: Casts importants à interrupter"
+
+  - name: "💊 Dispels/Purges"
+    points:
+      - "TODO: DoTs sacrés et boucliers"
+
+  - name: "⚠️ Gestion lumière/zones"
+    points:
+      - "TODO: Éviter zones de radiance et overlaps"

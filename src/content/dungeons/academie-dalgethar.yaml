@@ -1,0 +1,47 @@
+name: "Académie d'Algeth'ar"
+englishName: "Algeth'ar Academy"
+image: "assets/academie-dalgethar.jpg"
+season: s1
+order: 10
+
+tomtom: "/way PLACEHOLDER_ZONE PLACEHOLDER_X PLACEHOLDER_Y"
+route: "Attention aux packs entre chaque boss: beaucoup de contrôle, bumps et frontals."
+bonus: "TODO: Infos sur skip/raccourci possibles"
+
+importantCalls:
+  - "🔇 Kick : [Cours monotone](https://www.wowhead.com/fr/spell=388392) — Stun, peut aussi se dispell/CC."
+  - "⚠️ Positionnement : [Expulsion des intrus](https://www.wowhead.com/fr/spell=377912) — Bump hors plateforme (LOS)."
+  - "🔇 Kick : [Toucher guérisseur](https://www.wowhead.com/fr/spell=396640) — Heal add à interrompre en priorité."
+
+bosses:
+  - name: "Boss 1 : Vexamus"
+    points:
+      - "[Fissure arcanique](https://www.wowhead.com/fr/spell=388537) : 🛡️💊🗡️ Knockback + dégâts groupe + AOE sous les joueurs."
+      - "[Orbes arcaniques](https://www.wowhead.com/fr/spell=387691) : 🛡️💊🗡️ Gérer les orbes pour contrôler l'énergie du boss."
+      - "[Surtension](https://www.wowhead.com/fr/spell=391977) : 💊 Debuff stackable quand on soak les orbes."
+      - "[Bombes de mana](https://www.wowhead.com/fr/spell=386173) : 🛡️💊 Gros dégâts ciblés, poser la flaque loin du cac."
+      - "[Expulsion arcanique](https://www.wowhead.com/fr/spell=385958) : 🛡️ Frontal à orienter hors du groupe."
+
+  - name: "Boss 2 : Tricérabec"
+    points:
+      - "[Coup de bec sauvage](https://www.wowhead.com/fr/spell=376997) : 🛡️💊 Grosse attaque tank, dispell le DOT."
+      - "[Engagement !](https://www.wowhead.com/fr/spell=377182) : 🛡️💊🗡️ Attraper l'orbe et marquer au but (phases à 75% et 45%) avant fin d'incantation de [Vents dévastateurs](https://www.wowhead.com/fr/spell=1276752)."
+      - "[Tempête de feu](https://www.wowhead.com/fr/spell=376448) : 🛡️💊🗡️ Stun boss + fenêtre de burst, dodge les AOE."
+      - "[Puissante trombe](https://www.wowhead.com/fr/spell=376467) + [Bourrasque surpuissante](https://www.wowhead.com/fr/spell=377034) : 🛡️💊🗡️ Dodge les cyclones et la bourrasque aléatoire."
+      - "[Hurlement assourdissant](https://www.wowhead.com/fr/spell=377004) : 🛡️💊 Défensif + stop cast."
+
+  - name: "Boss 3 : Ancien embroussaillé"
+    points:
+      - "[Germination](https://www.wowhead.com/fr/spell=388796) : 🛡️💊🗡️ Stack sur tank et tourner en cercle."
+      - "[Lancer de branche](https://www.wowhead.com/fr/spell=388623) : 🛡️💊🗡️ Dodge."
+      - "[Toucher guérisseur](https://www.wowhead.com/fr/spell=396640) : 🔇 Kick prioritaire."
+      - "[Abondance](https://www.wowhead.com/fr/spell=396721) + [Écharde d’écorce](https://www.wowhead.com/fr/spell=396716) : 🛡️💊🗡️ Se pack dans la zone pour retirer les stacks, garder les adds dehors."
+      - "[Toxine de flagellant](https://www.wowhead.com/fr/spell=389033) : 💊 Dispell tank."
+      - "[Déracinement](https://www.wowhead.com/fr/spell=388923) : 🛡️💊 Prévoir défensif."
+
+  - name: "Boss 4 : Doragosa"
+    points:
+      - "[Puissance accablante](https://www.wowhead.com/fr/spell=389011) + [Énergie sauvage](https://www.wowhead.com/fr/spell=389007) : 🛡️💊🗡️ À 3 stacks, explosion + flaque à déposer loin."
+      - "[Aspiration de puissance](https://www.wowhead.com/fr/spell=388822) : 🛡️💊🗡️ Résister au pull."
+      - "[Bombe d’énergie](https://www.wowhead.com/fr/spell=374352) : 💊 S'écarter, dispell possible selon situation."
+      - "[Projectiles arcaniques](https://www.wowhead.com/fr/spell=373326) : 🛡️💊 Défensif si ciblé."
