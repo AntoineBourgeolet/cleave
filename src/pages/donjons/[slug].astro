@@ -157,16 +157,24 @@ function parseDisplaySegments(text: string): DisplaySegment[] {
     };
   });
 }
+
+const homeHref = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+function getDungeonHref(id: string) {
+  return `${homeHref}donjons/${id}/`;
+}
 ---
 
   <Base title={dungeon.name} description={`Fiche strat express — ${dungeon.name} (${dungeon.englishName}) · ${dungeon.season === 'Hors saison' ? 'Hors saison' : 'Saison 1'}`} enableWowhead={true}>
   <header class="topbar topbar--centered-brand">
     <div class="brand">
-      <a href="/" aria-label="Retour à l'accueil">
+      <a href={homeHref} aria-label="Retour à l'accueil">
         <Image src={logoCleave} alt="Cleave" class="brand-logo" loading="eager" width={268} height={68} />
       </a>
     </div>
-    <a class="back-link" href="/">← Donjons</a>
+    <a class="back-link" href={homeHref}>← Donjons</a>
   </header>
 
   <main class="dungeon-layout">
@@ -373,7 +381,7 @@ function parseDisplaySegments(text: string): DisplaySegment[] {
     <!-- Navigation précédent / suivant -->
     <nav class="dungeon-nav">
       {prev ? (
-        <a class="dungeon-nav-btn prev" href={`/donjons/${prev.id}/`}>
+        <a class="dungeon-nav-btn prev" href={getDungeonHref(prev.id)}>
           <Image
             src={getDungeonImage(prev.id as keyof typeof dungeonImageById)}
             alt={prev.data.name}
@@ -390,7 +398,7 @@ function parseDisplaySegments(text: string): DisplaySegment[] {
       ) : <div />}
 
       {next ? (
-        <a class="dungeon-nav-btn next" href={`/donjons/${next.id}/`}>
+        <a class="dungeon-nav-btn next" href={getDungeonHref(next.id)}>
           <Image
             src={getDungeonImage(next.id as keyof typeof dungeonImageById)}
             alt={next.data.name}

@@ -42,12 +42,20 @@ const dungeonImageById = {
 function getDungeonImage(id: keyof typeof dungeonImageById) {
   return dungeonImageById[id];
 }
+
+const homeHref = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+function getDungeonHref(id: string) {
+  return `${homeHref}donjons/${id}/`;
+}
 ---
 
 <Base title="Saison 1">
   <header class="topbar topbar--center">
     <div class="brand">
-      <a href="/" aria-label="Retour à l'accueil">
+      <a href={homeHref} aria-label="Retour à l'accueil">
         <Image src={logoCleave} alt="Cleave" class="brand-logo" loading="eager" width={268} height={68} />
       </a>
     </div>
@@ -73,7 +81,7 @@ function getDungeonImage(id: keyof typeof dungeonImageById) {
         </div>
         <div class="dungeon-grid">
           {s1.map((dungeon) => (
-            <a class="dungeon-card" href={`/donjons/${dungeon.id}/`}>
+            <a class="dungeon-card" href={getDungeonHref(dungeon.id)}>
               <div class="dungeon-card-thumb">
                 <Image
                   src={getDungeonImage(dungeon.id as keyof typeof dungeonImageById)}
@@ -101,7 +109,7 @@ function getDungeonImage(id: keyof typeof dungeonImageById) {
         </div>
         <div class="dungeon-grid">
           {hors.map((dungeon) => (
-            <a class="dungeon-card" href={`/donjons/${dungeon.id}/`}>
+            <a class="dungeon-card" href={getDungeonHref(dungeon.id)}>
               <div class="dungeon-card-thumb">
                 <Image
                   src={getDungeonImage(dungeon.id as keyof typeof dungeonImageById)}
